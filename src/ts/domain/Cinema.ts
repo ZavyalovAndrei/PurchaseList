@@ -13,5 +13,7 @@ export default class Cinema implements Buyable {
         readonly genre: [...string[]],
         readonly time: number,
         readonly price: number,
+        public quantity = 1,
+        readonly increasable = false,
     ) { }
 }
