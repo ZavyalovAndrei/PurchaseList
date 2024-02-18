@@ -5,7 +5,6 @@ export default class Cart {
 
   add(item: Buyable): void {
     const addIndex: number = this.getIndexById(item.id);
-    console.log(addIndex);
     if (addIndex === -1) {
       this._items.push(item);
     } else if (item.increasable) {
@@ -18,9 +17,9 @@ export default class Cart {
   }
 
   get summ(): number {
-    let result: number = 0;
-    this._items.forEach((item) => (result += item.price * item.quantity));
-    return result;
+    return this._items.reduce((accumulator, item) => {
+      return (accumulator += item.price * item.quantity);
+    }, 0);
   }
 
   getDiscount(discount: number): number {
